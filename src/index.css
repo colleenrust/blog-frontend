@@ -5,3 +5,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+#nav {
+  background-color: aquamarine;
+}
+
+#root {
+  background-image: url('./assets/leaves.png');
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
