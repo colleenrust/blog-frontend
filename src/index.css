@@ -6,9 +6,6 @@ html {
   scroll-behavior: smooth;
 }
 
-#nav {
-  background-color: aquamarine;
-}
 
 #root {
   background-image: url('./assets/leaves.png');
