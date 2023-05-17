@@ -27,11 +27,38 @@ export function Content() {
     const handleShowPost = (myPost) => {
       console.log(myPost)
       setIsPostsShowVisible(true);
+      setCurrentPost(myPost)
     };
   
     const handleClose = () => {
+      console.log('close modal')
       setIsPostsShowVisible(false);
     };
+    const handleCreatePost = (params) => {
+      axios.post('http://localhost:3000/posts.json', params).then(response => {
+        console.log(response.data);
+        // take everything that's in recipes and add response.data
+        setPosts([...posts, response.data])
+      })
+      console.log('handling create post')
+    }
+    const handleUpdatePost = (postId, params) => {
+      console.log('handling update post...');
+      axios.patch(`http://localhost:3000/posts/${postId}.json`, params).then(response => {
+        console.log(response.data);
+        setPosts(
+          posts.map(post => {
+            if (post.id === response.data.id) {
+              return response.data;
+            } else {
+              return post;
+            }
+          })
+        )
+        setIsPostsShowVisible(false);
+  
+      })
+    }
   return (
     <div className="container">
     <Login/>
@@ -39,10 +66,10 @@ export function Content() {
     <PostsNew />
     <LogoutLink/>
     <br />
-    <button onClick={handleIndexPosts}>Get data</button>
+    {/* <button onClick={handleIndexPosts}>Get data</button> */}
     <PostsIndex posts={posts} onShowPost={handleShowPost}/>
       <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <PostsShow post ={currentPost}/>
+        <PostsShow post ={currentPost}onUpdatePost={handleUpdatePost} />
       </Modal>
   </div>
 
