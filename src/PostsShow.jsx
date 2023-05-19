@@ -7,7 +7,11 @@ export function PostsShow(props){
 
     console.log('handling submit');
   }
-  console.log(props.post)
+  const handleClick = () =>{
+    console.log('handling click')
+    props.onDestroyPost(props.post.id)
+
+  }
   return(
     <div>
      <p><b>user_id:</b>{props.user_id}</p>
@@ -24,12 +28,13 @@ export function PostsShow(props){
         </p>
         <button type="input">Update post</button>
       </form>
-    
+      <br />
+      <br />
+      <button onClick={handleClick}>Delete post</button>
     
     </div>
 
 
   )
-
 
 }

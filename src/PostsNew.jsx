@@ -5,7 +5,7 @@ export function PostsNew() {
     const params = new FormData(event.target);
     props .onCreatePost(params)
     console.log('handling boink');
-    event.target.reset()
+    window.location.href = "/";
 
     
   }
